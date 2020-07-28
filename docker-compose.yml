@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  jira-servicedesk:
+    image:  atlassian/jira-servicedesk
+    container_name: jira-servicedesk
+    volumes:
+      - jiradata:/var/atlassian/application-data/jira
+    ports:
+      - '8080:8080'
+    environment:
+      - JIRA_DATABASE_URL=postgresql://jira@postgresql/jiradb
+      - JIRA_DB_PASSWORD=jirapassword
+      - JVM_MINIMUM_MEMORY =2048m
+      - JVM_MAXIMUM_MEMORY=4096m
+    depends_on: 
+      - jira-postgresql
+
+
+  jira-postgresql:
+    image: postgres:9.5-alpine
+    container_name: jira-postgresql
+    volumes:
+      - postgresqldata:/var/lib/postgresql/data
+    environment:
+      - 'POSTGRES_USER=jira'
+      - 'POSTGRES_PASSWORD=jirapassword'
+      - 'POSTGRES_DB=jiradb'     
+      - 'POSTGRES_ENCODING=UNICODE'
+      - 'POSTGRES_COLLATE=C
+      - 'POSTGRES_COLLATE_TYPE=C       
+
+
+    
+networks:
+  default:
+    external:
+      name: jira-network      
