@@ -1,4 +1,3 @@
-
 # Introduction
 
 This repository contains the on premise (via docker) set up of Jira Service Desk. In addition you can find the requests you need from the [official Atlassian documentation](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-servicedesk/#api-group-servicedesk). 
@@ -12,19 +11,15 @@ For creating and receiving requests automatically you have to think about access
 
 In the following you will hopefully get an answer of these questions.
 
+
 ---
 
 
 ## Accessing APIs
 
-### Generate API customer for existing user 
-
 API Access will use basic authentication which means you will always use a non technical user for accessing all APIs.  
-Go to Settings 
+You can also use oAuth, described in the [REST API documentation](https://developer.atlassian.com/cloud/jira/service-desk/jira-rest-api-oauth-authentication/). In this repository you will always find the requests with basic authentication.
 
-### Use technical user -> anonymous access 
-
-asdasd
 
 ---
 
@@ -89,5 +84,3 @@ In general 3. is optional -> we not need them if we already know the id nd make 
 
 6. Response from support did not help customer so he has to    
    comment/answer on the ticket.
-
-

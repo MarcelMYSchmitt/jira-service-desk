@@ -1,38 +1,41 @@
-version: '3'
+version: "3.2"
 
 services:
-  jira-servicedesk:
-    image:  atlassian/jira-servicedesk
-    container_name: jira-servicedesk
+  jira-service-desk:
+    image: atlassian/jira-servicedesk
+    container_name: jira-service-desk
+    restart: always
     volumes:
-      - jiradata:/var/atlassian/application-data/jira
-    ports:
-      - '8080:8080'
+      - jiradata:/var/atlassian/jira    
     environment:
-      - JIRA_DATABASE_URL=postgresql://jira@postgresql/jiradb
-      - JIRA_DB_PASSWORD=jirapassword
-      - JVM_MINIMUM_MEMORY =2048m
-      - JVM_MAXIMUM_MEMORY=4096m
-    depends_on: 
-      - jira-postgresql
+      - ATL_JDBC_URL=jdbc:postgresql://postgresql:5432/jiradb
+      - ATL_JDBC_USER=jira
+      - ATL_JDBC_PASSWORD=dummypassword
+      - ATL_DB_DRIVER=org.postgresql.Driver
+      - ATL_DB_TYPE=postgres72
+      - JVM_MINIMUM_MEMORY=2048m
+      - JVM_MAXIMUM_MEMORY=4096m      
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresql
 
-
-  jira-postgresql:
+  postgresql:
     image: postgres:9.5-alpine
-    container_name: jira-postgresql
     volumes:
       - postgresqldata:/var/lib/postgresql/data
     environment:
-      - 'POSTGRES_USER=jira'
-      - 'POSTGRES_PASSWORD=jirapassword'
-      - 'POSTGRES_DB=jiradb'     
-      - 'POSTGRES_ENCODING=UNICODE'
-      - 'POSTGRES_COLLATE=C
-      - 'POSTGRES_COLLATE_TYPE=C       
+      - POSTGRES_USER=jira
+      - POSTGRES_PASSWORD=dummypassword
+      - POSTGRES_DB=jiradb
+    ports:
+     - "5432:5432"
 
+volumes:
+  jiradata:
+  postgresqldata:
 
-    
 networks:
   default:
     external:
-      name: jira-network      
+      name: jira-network
