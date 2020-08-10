@@ -107,6 +107,5 @@ In Jira Service Desk you have different kind of request types, depending on the 
 
 
 6. Response from support did not help customer so he has to    
-   comment/answer on the ticket.
 
    To Do: Post Requests
