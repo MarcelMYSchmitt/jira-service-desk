@@ -332,3 +332,146 @@
     }
   }
   ```
+
+---
+
+
+<h2 id="get-customer-request">Get Customer Request</h2>
+
+  - Request for getting customer request
+    ```
+    curl --request GET \
+      --url 'https://mrmyiagi.atlassian.net/rest/servicedeskapi/request?expand=participant&serviceDeskId=2' \
+      --header 'Accept: application/json'
+    ```
+
+  - Response for getting customer request
+    ```
+    {
+    "_expands": [
+        "participant",
+        "status",
+        "sla",
+        "requestType",
+        "serviceDesk",
+        "attachment",
+        "action",
+        "comment"
+    ],
+    "size": 7,
+    "start": 0,
+    "limit": 50,
+    "isLastPage": true,
+    "_links": {
+        "self": "https://mrmyiagi.atlassian.net/rest/servicedeskapi/request?expand=participant&serviceDeskId=2",
+        "base": "https://mrmyiagi.atlassian.net",
+        "context": ""
+    },
+    "values": [
+{
+            "_expands": [
+                "participant",
+                "status",
+                "sla",
+                "requestType",
+                "serviceDesk",
+                "attachment",
+                "action",
+                "comment"
+            ],
+            "issueId": "10018",
+            "issueKey": "ISD-7",
+            "requestTypeId": "9",
+            "serviceDeskId": "2",
+            "createdDate": {
+                "iso8601": "2020-08-11T15:51:42+0200",
+                "jira": "2020-08-11T15:51:42.309+0200",
+                "friendly": "Today 3:51 PM",
+                "epochMillis": 1597153902309
+            },
+            "reporter": {
+                "accountId": "5b9f8ca5990ff108598595d3",
+                "emailAddress": "marcel.schmitt.2012@gmail.com",
+                "displayName": "Marcel Schmitt",
+                "active": true,
+                "timeZone": "Europe/Berlin",
+                "_links": {
+                    "jiraRest": "https://mrmyiagi.atlassian.net/rest/api/2/user?accountId=5b9f8ca5990ff108598595d3",
+                    "avatarUrls": {
+                        "48x48": "https://secure.gravatar.com/avatar/799f8651b94300779b30532516047c97?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMS-0.png",
+                        "24x24": "https://secure.gravatar.com/avatar/799f8651b94300779b30532516047c97?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMS-0.png",
+                        "16x16": "https://secure.gravatar.com/avatar/799f8651b94300779b30532516047c97?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMS-0.png",
+                        "32x32": "https://secure.gravatar.com/avatar/799f8651b94300779b30532516047c97?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMS-0.png"
+                    },
+                    "self": "https://mrmyiagi.atlassian.net/rest/api/2/user?accountId=5b9f8ca5990ff108598595d3"
+                }
+            },
+            "requestFieldValues": [
+                {
+                    "fieldId": "summary",
+                    "label": "Summary",
+                    "value": "something is wrong with the api"
+                },
+                {
+                    "fieldId": "description",
+                    "label": "Description",
+                    "value": "help me! ",
+                    "renderedValue": {
+                        "html": "<p>help me! </p>"
+                    }
+                },
+                {
+                    "fieldId": "attachment",
+                    "label": "Attachment",
+                    "value": []
+                }
+            ],
+            "currentStatus": {
+                "status": "Waiting for support",
+                "statusCategory": "INDETERMINATE",
+                "statusDate": {
+                    "iso8601": "2020-08-11T15:51:42+0200",
+                    "jira": "2020-08-11T15:51:42.309+0200",
+                    "friendly": "Today 3:51 PM",
+                    "epochMillis": 1597153902309
+                }
+            },
+            "participants": {
+                "size": 1,
+                "start": 0,
+                "limit": 50,
+                "isLastPage": true,
+                "_links": {
+                    "self": "https://mrmyiagi.atlassian.net/rest/servicedeskapi/request/ISD-7/participant",
+                    "base": "https://mrmyiagi.atlassian.net",
+                    "context": ""
+                },
+                "values": [
+                    {
+                        "accountId": "qm:1dc3818c-9fe1-4abf-a66a-f48e41eb4b49:84a9279b-010e-4878-8758-c1b80d51c0f0",
+                        "emailAddress": "marcel.mj.schmitt@web.de",
+                        "displayName": "Marcel Schmitt",
+                        "active": true,
+                        "timeZone": "Europe/Berlin",
+                        "_links": {
+                            "jiraRest": "https://mrmyiagi.atlassian.net/rest/api/2/user?accountId=qm%3A1dc3818c-9fe1-4abf-a66a-f48e41eb4b49%3A84a9279b-010e-4878-8758-c1b80d51c0f0",
+                            "avatarUrls": {
+                                "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png",
+                                "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png",
+                                "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png",
+                                "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png"
+                            },
+                            "self": "https://mrmyiagi.atlassian.net/rest/api/2/user?accountId=qm%3A1dc3818c-9fe1-4abf-a66a-f48e41eb4b49%3A84a9279b-010e-4878-8758-c1b80d51c0f0"
+                        }
+                    }
+                ]
+            },
+            "_links": {
+                "jiraRest": "https://mrmyiagi.atlassian.net/rest/api/2/issue/10018",
+                "web": "https://mrmyiagi.atlassian.net/servicedesk/customer/portal/2/ISD-7",
+                "self": "https://mrmyiagi.atlassian.net/rest/servicedeskapi/request/10018"
+            }
+        }
+      ]
+    }
+    ```  

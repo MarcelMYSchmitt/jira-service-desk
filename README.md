@@ -4,7 +4,11 @@ This repository contains the on premise (via docker) set up of Jira Service Desk
   
 You can use them for your on premise installation or in your hosted on cloud solution, just change the base path or every URL.   
 
+
 <b>In general:</b>   
+
+In general you have to think about how the customer will interact with this Service Desk. Do you want him to interact directly with the Service Desk or do you want to provide him a custom user interface within your application? If you want to provide him an own interface you can find all relevant API calls below. Advantage of providing an own user interface could be a better UI/UX flow within your application and besides, concerning Jira Service Desk, also a cost issue. If you would use Jira Service Desk directly you would have to add every customer separately. In your own onpremise installation it could be no problem, but if you use something on cloud you could pay per user. The provided solution here, "fakes" adding customers to the Service Desk. They will be added but will not use the Desk. You will always use the API with a technical user. And the user will not realize this...just make sure that you disable all email notifications in your settings. So the user will not now that there is a Jira Service Desk running in the background.
+
 When you want to use Jira Service Desk you have to think about the projects you want to create/support there and how you want to support the customers inside your Service Desk. You can have just one project in one Jira Service Desk instance or multiple projects in one instance with different customers (1:1:n, 1:n:n). It's like multi tenancy handling...maybe you do want to have some kind of seperation between projects and customers/organziations. Every customer can be part of an organization in Service Desk, organizations can be seen as a mirror of companies of your application. You do not need to add customers to an organization, if you want to have no or just a flat hierarchy.  
 
 For creating and receiving requests automatically you have to think about accessing the APIs...do you want to have a personal or technical user? What are the permissions you have to set....?  
@@ -92,6 +96,7 @@ In Jira Service Desk you have different kind of request types, depending on the 
 
 3. We have now all data we need prepared. We created/got an organization and a valid user (by get or creation of the user). 
    For creating new request tickets we always need the user id and the service desk id.  
+   By using those values in the `requestParticipants` tag, we can call all requests later to filter just those tickets which are relevant to the specific user. 
    [Create Request](Requests.md/#create-request)    
 
    ```
@@ -102,9 +107,12 @@ In Jira Service Desk you have different kind of request types, depending on the 
 
 5. We can also get the feedback from support, if they comment the ticket, the ticket status and so on. 
    It's relevant to give the customer the feedback if somebody is already working on his problem. 
+   [Get Request](Requests.md/#get-customer-request)    
 
-   To Do: Get Requests
 
+   function getCustomerRequest(serviceDeskId, emailAdress/userid) {
+      return status, comments, description...
+   }
 
 6. Response from support did not help customer so he has to    
 
