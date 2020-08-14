@@ -109,11 +109,19 @@ In Jira Service Desk you have different kind of request types, depending on the 
    It's relevant to give the customer the feedback if somebody is already working on his problem. 
    [Get Request](Requests.md/#get-customer-request)    
 
-
+   ```
    function getCustomerRequest(serviceDeskId, emailAdress/userid) {
       return status, comments, description...
    }
+   ```
 
-6. Response from support did not help customer so he has to    
 
-   To Do: Post Requests
+6. If the response from support did not help the customer he should be able to answer and ask for more help.   
+   This can also be done via request on the same ticket as comment.     
+   Please regard that we use the technical user for the API and in this request we have no possibility to add extra annotations/data like request particants. So in Jira Service Desk you will not see the real customer commenting but the technical user. So we have to make sure that the request will be sent from the right customer.
+   [Create comment on Customer Request](Requests.md/#create-customer-request-comment)    
+
+   ```
+   function createCommentOnCustomerRequest(serviceDeskId, emailAdress/userid) {
+   }
+   ```

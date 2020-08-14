@@ -237,7 +237,7 @@
 <h2 id="create-request">Create Request</h2>
 
   - Request for creating new customer request
-  ```
+    ```
     curl --request POST \
       --url 'https://mrmyiagi.atlassian.net/rest/servicedeskapi/request' \
       --header 'Accept: application/json' \
@@ -253,11 +253,11 @@
         "description": "I need a new *mouse* for my Mac"
       }
     }'
-  ```
+    ```
 
   - Response for creating new customer request
-  ```
-  {
+    ```
+    {
     "_expands": [
         "participant",
         "status",
@@ -368,7 +368,7 @@
         "context": ""
     },
     "values": [
-{
+    {
             "_expands": [
                 "participant",
                 "status",
@@ -475,3 +475,60 @@
       ]
     }
     ```  
+
+
+  ---
+
+
+  <h2 id="create-customer-request-comment">Create comment on Customer Request</h2>
+  
+  - Request for commenting customer request
+    ```
+    curl --request POST \
+      --url 'https://mrmyiagi.atlassian.net/rest/servicedeskapi/request/10018/comment' \
+      --header 'Accept: application/json' \
+      --header 'Content-Type: application/json' \
+      --data '{
+      "public": true,
+      "body": "Hello there, need still some help please!"
+    }'
+    ```
+
+  - Response for commenting customer request
+    ```
+    {
+      "_expands": [
+          "attachment",
+          "renderedBody"
+      ],
+      "id": "10024",
+      "body": "Hello there, need still some help please!",
+      "public": true,
+      "author": {
+          "accountId": "5b9f8ca5990ff108598595d3",
+          "emailAddress": "marcel.schmitt.2012@gmail.com",
+          "displayName": "Marcel Schmitt",
+          "active": true,
+          "timeZone": "Europe/Berlin",
+          "_links": {
+              "jiraRest": "https://mrmyiagi.atlassian.net/rest/api/2/user?accountId=5b9f8ca5990ff108598595d3",
+              "avatarUrls": {
+                  "48x48": "https://secure.gravatar.com/avatar/799f8651b94300779b30532516047c97?d=https%3A%2F%2Favatar-management--avatars.us-west-2. prod.public.atl-paas.net%2Finitials%2FMS-0.png",
+                  "24x24": "https://secure.gravatar.com/avatar/799f8651b94300779b30532516047c97?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMS-0.png",
+                  "16x16": "https://secure.gravatar.com/avatar/799f8651b94300779b30532516047c97?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMS-0.png",
+                  "32x32": "https://secure.gravatar.com/avatar/799f8651b94300779b30532516047c97?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMS-0.png"
+              },
+              "self": "https://mrmyiagi.atlassian.net/rest/api/2/user?accountId=5b9f8ca5990ff108598595d3"
+          }
+      },
+      "created": {
+          "iso8601": "2020-08-14T21:18:43+0200",
+          "jira": "2020-08-14T21:18:43.123+0200",
+          "friendly": "Today 9:18 PM",
+          "epochMillis": 1597432723123
+      },
+      "_links": {
+          "self": "https://mrmyiagi.atlassian.net/rest/servicedeskapi/request/10018/comment/10024"
+      }
+    }    
+    ```
